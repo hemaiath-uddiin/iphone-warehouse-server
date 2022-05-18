@@ -36,17 +36,22 @@ async function run() {
          const item =  await iphoneItem.findOne(query)
          res.send(item)
      })
-  } 
-  finally{ 
+    //post 
+   app.post('/item', async (req, res)  =>{
+     const newService = req.body;
+     const result = await iphoneItem.insertOne(newService);
+     res.send(result)
+   });
+  }
+  finally{
 
   }
+}
 
-} 
-run().catch(console.dir);
-
+run().catch(console.dir)
  app.get('/',(req,res)=>{ 
      res.send("runnig server")
  }) 
  app.listen(port,()=>{ 
      console.log("listening to port ",port);
- })
+ })  
