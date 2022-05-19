@@ -41,7 +41,25 @@ async function run() {
      const newService = req.body;
      const result = await iphoneItem.insertOne(newService);
      res.send(result)
-   });
+   }); 
+   // update quantity 
+   app.put('/item/:id', async (req, res)  =>{
+      const id = req.params
+     const body = req.body 
+     const filter = {_id:ObjectId(id)} 
+     const update ={ 
+       $set:{ 
+        quantity:body.newQuantity
+       }
+     }
+     const result = await iphoneItem.updateOne(filter,update, function(err, res) {
+      if (err) throw err;
+      console.log("1 document updated");
+    }) 
+     console.log(result);
+     res.send({success: "succesfull", result})
+  }); 
+
   }
   finally{
 
