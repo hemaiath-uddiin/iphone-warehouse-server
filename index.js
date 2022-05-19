@@ -1,7 +1,7 @@
 const express = require('express'); 
 const cors = require('cors');  
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
-
+ const objectId = require('mongodb').ObjectId;
 require('dotenv').config()  
 const port = process.env.PORT||5000
 const app = express() ;
@@ -58,7 +58,15 @@ async function run() {
     }) 
      console.log(result);
      res.send({success: "succesfull", result})
-  }); 
+  });  
+
+  //Delet item from database 
+  app.delete('/item/:id',async(req,res)=>{ 
+    const id = req.params 
+    const query = {_id:objectId(id)} ;
+    const result = await iphoneItem.deleteOne(query); 
+      res.send(result)
+})
 
   }
   finally{
