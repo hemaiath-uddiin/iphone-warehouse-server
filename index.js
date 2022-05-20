@@ -25,7 +25,7 @@ async function run() {
      const Latest = client.db("Latest").collection('phone'); 
      app.get('/latest',async(req,res)=>{ 
       const query = {} ;
-    //  const cursor = Latest.find(query);  
+    
     const cursor = Latest.find(query); 
 
       const phones = await cursor.toArray() ;
@@ -34,7 +34,9 @@ async function run() {
      //sigle item get
      app.get('/item/:id',async(req,res)=>{ 
          const id = req.params.id; 
-         const query = {_id:ObjectId(id)} ;
+        // const query = {_id:ObjectId(id)} ; 
+        const query = {_id:ObjectId(id)} ;
+
          const item =  await iphoneItem.findOne(query)
          res.send(item)
      })
