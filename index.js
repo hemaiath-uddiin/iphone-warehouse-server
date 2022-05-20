@@ -25,7 +25,9 @@ async function run() {
      const Latest = client.db("Latest").collection('phone'); 
      app.get('/latest',async(req,res)=>{ 
       const query = {} ;
-      const cursor = Latest.find(query); 
+    //  const cursor = Latest.find(query);  
+    const cursor = Latest.find(query); 
+
       const phones = await cursor.toArray() ;
       res.send(phones);
    }) 
