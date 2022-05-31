@@ -24,7 +24,8 @@ async function run() {
      //latest phone api                       
      const Latest = client.db("Latest").collection('phone'); 
      app.get('/latest',async(req,res)=>{ 
-      const query = {} ;
+     // const query = {} ; 
+     const query = {}
     
     const cursor = Latest.find(query); 
 
@@ -83,6 +84,7 @@ run().catch(console.dir)
  app.get('/',(req,res)=>{ 
      res.send("runnig server")
  }) 
+  
  app.listen(port,()=>{ 
-     console.log("listening to port ",port);
- })  
+  console.log("listening to port ",port);
+})  
